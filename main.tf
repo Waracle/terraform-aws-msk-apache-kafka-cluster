@@ -198,6 +198,8 @@ resource "aws_msk_cluster" "default" {
     ignore_changes = [
       # Ignore changes to ebs_volume_size in favor of autoscaling policy
       broker_node_group_info[0].ebs_volume_size,
+      # Ignore changes to the client_authentication due to https://github.com/hashicorp/terraform-provider-aws/issues/24914
+      client_authentication
     ]
   }
 
